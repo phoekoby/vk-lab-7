@@ -11,9 +11,11 @@ import org.example.pojo.OrganizationDTO;
 import org.example.pojo.ProductDTO;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
+import org.jooq.Record1;
 import org.jooq.Record4;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
+import static org.jooq.impl.DSL.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -121,14 +123,14 @@ public class ProductDAOImpl implements ProductDAO {
         try (Connection conn = DriverManager.getConnection(dbCredentials.getCONNECTION() + dbCredentials.getDB_NAME(),
                 dbCredentials.getUSERNAME(), dbCredentials.getPASSWORD())) {
             final DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
+            Optional<OrganizationDTO> organizationDTO = organizationDAO.getByName(value.getOrganizationName());
+            OrganizationDTO organization = organizationDTO.orElseGet(()-> organizationDAO.save(new OrganizationDTO(value.getName())));
 
-            context.
-                    insertInto(PRODUCT, PRODUCT.NAME, PRODUCT.ORGANIZATION_ID, PRODUCT.AMOUNT)
-                    .values(value.getName(), organizationDAO
-                            .save(new OrganizationDTO(value.getOrganizationName()))
-                            .getId(), value.getAmount())
-                    .execute();
-            return value;
+           return productMapper.toEntity(Objects.requireNonNull(context.
+                   insertInto(PRODUCT, PRODUCT.NAME, PRODUCT.ORGANIZATION_ID, PRODUCT.AMOUNT)
+                   .values(value.getName(), organization.getId(), value.getAmount())
+                   .returning()
+                   .fetchOne()));
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

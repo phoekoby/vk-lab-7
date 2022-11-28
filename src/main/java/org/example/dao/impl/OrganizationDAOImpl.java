@@ -15,6 +15,7 @@ import org.jooq.impl.DSL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -110,11 +111,28 @@ public class OrganizationDAOImpl implements OrganizationDAO {
                 dbCredentials.getUSERNAME(), dbCredentials.getPASSWORD())) {
             final DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
 
-            context.
+            return organizationMapper.toEntity(Objects.requireNonNull(context.
                     insertInto(ORGANIZATION, ORGANIZATION.NAME)
                     .values(value.getName())
-                    .execute();
-            return value;
+                    .returning()
+                    .fetchOne()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Optional<OrganizationDTO> getByName(String name) {
+        try (Connection conn = DriverManager.getConnection(dbCredentials.getCONNECTION() + dbCredentials.getDB_NAME(),
+                dbCredentials.getUSERNAME(), dbCredentials.getPASSWORD())) {
+            final DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
+
+            final @NotNull Optional<OrganizationRecord> record = Optional.ofNullable(context
+                    .selectFrom(ORGANIZATION)
+                    .where(ORGANIZATION.NAME.eq(name))
+                    .fetchOne());
+            return record.map(organizationMapper::toEntity);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

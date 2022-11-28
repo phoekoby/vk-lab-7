@@ -5,7 +5,7 @@ import org.eclipse.jetty.server.*;
 
 public class DefaultServer {
     private final Server server = new Server();
-    private static final int port = 8000;
+    private static final int port = 8080;
 
     public Server build() {
         return build(port);

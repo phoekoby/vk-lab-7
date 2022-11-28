@@ -42,6 +42,13 @@ dependencies {
     implementation("org.eclipse.jetty:jetty-server:11.0.12")
 
     implementation("org.eclipse.jetty:jetty-servlet:11.0.12")
+    implementation("org.eclipse.jetty:jetty-servlets:11.0.12")
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    implementation("com.fasterxml.jackson.core:jackson-core:2.14.1")
+
+// https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation("commons-io:commons-io:2.11.0")
 
     jooqGenerator("org.postgresql:postgresql:42.5.0")
 }
