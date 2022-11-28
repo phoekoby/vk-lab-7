@@ -25,13 +25,13 @@ public class RolesFilter {
         final List<ConstraintMapping> constraintMappings = new ArrayList<>();
         constraintMappings.addAll(constraintMapping(
                 buildConstraint(ROLE_MANAGER, ROLE_GUEST),
-                Collections.singletonList("/products"),
+                Collections.singletonList("/products/*"),
                 "GET"
         ));
 
         constraintMappings.addAll(constraintMapping(
                 buildConstraint(ROLE_MANAGER),
-                Collections.singletonList("/products"),
+                Collections.singletonList("/products/*"),
                 "POST"
         ));
 
