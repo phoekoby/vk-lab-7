@@ -10,7 +10,6 @@ import generated.tables.Product;
 import generated.tables.records.FlywaySchemaHistoryRecord;
 import generated.tables.records.OrganizationRecord;
 import generated.tables.records.ProductRecord;
-
 import org.jooq.ForeignKey;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;

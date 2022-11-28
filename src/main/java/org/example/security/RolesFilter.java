@@ -12,7 +12,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.example.security.RolesConstants.*;
+import static org.example.security.RolesConstants.ROLE_GUEST;
+import static org.example.security.RolesConstants.ROLE_MANAGER;
 
 public class RolesFilter {
 

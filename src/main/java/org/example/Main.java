@@ -1,7 +1,6 @@
 package org.example;
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import lombok.SneakyThrows;
 import org.example.config.ProductModule;

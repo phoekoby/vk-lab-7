@@ -5,24 +5,24 @@ import com.google.inject.Inject;
 import org.example.config.DBCredentials;
 import org.example.dao.OrganizationDAO;
 import org.example.dao.ProductDAO;
-
 import org.example.mapper.ProductMapper;
 import org.example.pojo.OrganizationDTO;
 import org.example.pojo.ProductDTO;
 import org.jetbrains.annotations.NotNull;
 import org.jooq.DSLContext;
-import org.jooq.Record1;
 import org.jooq.Record4;
 import org.jooq.SQLDialect;
 import org.jooq.impl.DSL;
-import static org.jooq.impl.DSL.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.*;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static generated.Tables.*;
+import static generated.Tables.ORGANIZATION;
+import static generated.Tables.PRODUCT;
 
 
 public class ProductDAOImpl implements ProductDAO {

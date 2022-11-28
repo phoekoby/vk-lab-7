@@ -7,13 +7,12 @@ package generated;
 import generated.tables.FlywaySchemaHistory;
 import generated.tables.Organization;
 import generated.tables.Product;
-
-import java.util.Arrays;
-import java.util.List;
-
 import org.jooq.Catalog;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**

@@ -1,7 +1,7 @@
 package org.example.server;
 
 import com.google.inject.Inject;
-import jakarta.servlet.*;
+import jakarta.servlet.DispatcherType;
 import org.eclipse.jetty.security.ConstraintSecurityHandler;
 import org.eclipse.jetty.security.JDBCLoginService;
 import org.eclipse.jetty.server.Server;
@@ -16,8 +16,6 @@ import org.example.filter.PostFilter;
 import org.example.security.RolesFilter;
 import org.example.servlets.ProductsServlet;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.EnumSet;
 import java.util.Objects;
 

@@ -3,7 +3,6 @@ package org.example.mapper;
 import generated.tables.records.ProductRecord;
 import org.example.pojo.ProductDTO;
 import org.jooq.Record4;
-import org.jooq.Record5;
 
 public class ProductMapper implements Mapper<ProductRecord, ProductDTO> {
     @Override
