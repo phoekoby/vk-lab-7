@@ -124,7 +124,7 @@ public class ProductDAOImpl implements ProductDAO {
                 dbCredentials.getUSERNAME(), dbCredentials.getPASSWORD())) {
             final DSLContext context = DSL.using(conn, SQLDialect.POSTGRES);
             Optional<OrganizationDTO> organizationDTO = organizationDAO.getByName(value.getOrganizationName());
-            OrganizationDTO organization = organizationDTO.orElseGet(()-> organizationDAO.save(new OrganizationDTO(value.getName())));
+            OrganizationDTO organization = organizationDTO.orElseGet(()-> organizationDAO.save(new OrganizationDTO(value.getOrganizationName())));
 
            return productMapper.toEntity(Objects.requireNonNull(context.
                    insertInto(PRODUCT, PRODUCT.NAME, PRODUCT.ORGANIZATION_ID, PRODUCT.AMOUNT)
